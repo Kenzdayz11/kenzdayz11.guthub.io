@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kennf</title>
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkLWaAg2_LlE1UrSvCMVZQup14DZ4jUR20oQ&usqp=CAU" type="image/x-icon">
     <style>
         body {
             background-color: black;
@@ -37,87 +38,85 @@
         }
         .animate-welcome {
             display: inline-block;
-            border-right: 2px solid white;
             white-space: nowrap;
             overflow: hidden;
-            animation: typing 6s steps(30, end) 1s 1 normal both, deleting 6s steps(30, end) 8s 1 reverse both, blink-caret 0.75s step-end infinite;
+            border-right: 2px solid white;
+            animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
         }
         @keyframes typing {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
-        }
-        @keyframes deleting {
-            from {
-                width: 100%;
-            }
-            to {
-                width: 0;
-            }
+            from { width: 0; }
+            to { width: 100%; }
         }
         @keyframes blink-caret {
-            from, to {
-                border-color: transparent;
-            }
-            50% {
-                border-color: white;
-            }
+            from, to { border-color: transparent; }
+            50% { border-color: white; }
+        }
+        .animate-title {
+            overflow: hidden;
+            border-right: 2px solid white;
+            white-space: nowrap;
+            animation: typing-title 4s steps(30, end) 5s, blink-caret 0.75s step-end infinite 9s;
+        }
+        @keyframes typing-title {
+            from { width: 0; }
+            to { width: 100%; }
         }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const titleText = 'kennf';
-            let titleIndex = 0;
-            let isDeleting = false;
-            let timeout;
+            const welcomeText = 'W E L C O M E';
+            const titleText = 'Kennf';
 
-            function typeTitle() {
-                document.title = titleText.substring(0, titleIndex) + (isDeleting ? '' : '|');
-
-                if (isDeleting) {
-                    if (titleIndex === 0) {
-                        clearTimeout(timeout);
-                        setTimeout(() => { 
-                            isDeleting = false; 
-                            typeTitle(); 
-                        }, 1000);
-                    } else {
-                        titleIndex--;
-                        timeout = setTimeout(typeTitle, 200);
-                    }
-                } else {
-                    if (titleIndex === titleText.length) {
-                        clearTimeout(timeout);
-                        setTimeout(() => { 
-                            isDeleting = true; 
-                            typeTitle(); 
-                        }, 2000);
-                    } else {
-                        titleIndex++;
-                        timeout = setTimeout(typeTitle, 200);
-                    }
+            function typeWelcome() {
+                const welcomeElem = document.querySelector('.animate-welcome');
+                if (welcomeElem) {
+                    welcomeElem.textContent = ''; // Clear existing text
+                    let charIndex = 0;
+                    const timer = setInterval(function() {
+                        if (charIndex < welcomeText.length) {
+                            welcomeElem.textContent += welcomeText.charAt(charIndex);
+                            charIndex++;
+                        } else {
+                            clearInterval(timer);
+                        }
+                    }, 100);
                 }
             }
 
-            typeTitle();
+            function typeTitle() {
+                const titleElem = document.querySelector('title');
+                if (titleElem) {
+                    titleElem.textContent = ''; // Clear existing text
+                    let charIndex = 0;
+                    const timer = setInterval(function() {
+                        if (charIndex < titleText.length) {
+                            titleElem.textContent += titleText.charAt(charIndex);
+                            charIndex++;
+                        } else {
+                            clearInterval(timer);
+                        }
+                    }, 100);
+                }
+            }
+
+            // Start typing animations
+            typeWelcome();
+            setTimeout(typeTitle, 6000); // Start title typing after welcome typing animation ends
         });
     </script>
 </head>
 <body>
     <header>
-        <h1 class="animate-welcome">Welcome</h1>
+        <h1>Welcome</h1>
     </header>
     <main>
-        <h2>kennf)</h2>
-        <p>nothing to see</p>
-        <p>Tautan 🔗: <a href="https://github.com/Kenzdayz11" target="_blank">Github</a></p>
-        <p>Dengan latar belakang hitam dan font Arial, website ini memiliki tampilan yang elegan dan modern.</p>
+        <h2>link</h2>
+        <p>nothing to see here</p>
+        <p>🔗: <a href="https://github.com/kenzdayz11" target="_blank">Github</a></p>
+        <p>ending</p>
     </main>
     <footer>
-        <p>&copy; 2024 Kenzdayz11 - All Rights Reserved</p>
+        <p>&copy; 2024 Kenzdayz11/p>
     </footer>
 </body>
 </html>
