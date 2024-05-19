@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kennf</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 50px 0;
+        }
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            background-color: black;
+        }
+        a {
+            color: #1E90FF; /* Warna biru untuk link */
+            text-decoration: none; /* Menghilangkan garis bawah pada link */
+        }
+        a:hover {
+            text-decoration: underline; /* Garis bawah muncul saat link di-hover */
+        }
+        .animate-welcome {
+            display: inline-block;
+            border-right: 2px solid white;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 6s steps(30, end) 1s 1 normal both, deleting 6s steps(30, end) 8s 1 reverse both, blink-caret 0.75s step-end infinite;
+        }
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+        @keyframes deleting {
+            from {
+                width: 100%;
+            }
+            to {
+                width: 0;
+            }
+        }
+        @keyframes blink-caret {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: white;
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const titleText = 'kennf';
+            let titleIndex = 0;
+            let isDeleting = false;
+            let timeout;
+
+            function typeTitle() {
+                document.title = titleText.substring(0, titleIndex) + (isDeleting ? '' : '|');
+
+                if (isDeleting) {
+                    if (titleIndex === 0) {
+                        clearTimeout(timeout);
+                        setTimeout(() => { 
+                            isDeleting = false; 
+                            typeTitle(); 
+                        }, 1000);
+                    } else {
+                        titleIndex--;
+                        timeout = setTimeout(typeTitle, 200);
+                    }
+                } else {
+                    if (titleIndex === titleText.length) {
+                        clearTimeout(timeout);
+                        setTimeout(() => { 
+                            isDeleting = true; 
+                            typeTitle(); 
+                        }, 2000);
+                    } else {
+                        titleIndex++;
+                        timeout = setTimeout(typeTitle, 200);
+                    }
+                }
+            }
+
+            typeTitle();
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1 class="animate-welcome">Welcome</h1>
+    </header>
+    <main>
+        <h2>kennf)</h2>
+        <p>nothing to see</p>
+        <p>Tautan 🔗: <a href="https://github.com/Kenzdayz11" target="_blank">Github</a></p>
+        <p>Dengan latar belakang hitam dan font Arial, website ini memiliki tampilan yang elegan dan modern.</p>
+    </main>
+    <footer>
+        <p>&copy; 2024 Kenzdayz11 - All Rights Reserved</p>
+    </footer>
+</body>
+</html>
